@@ -1,0 +1,6 @@
+void send(char* email, char* message) {
+
+
+
+	
+}
