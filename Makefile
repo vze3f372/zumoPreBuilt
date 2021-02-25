@@ -15,11 +15,15 @@ MQTT_H  = MQTTCLIENT_PLATFORM_HEADER=MQTTFreeRTOS.h
 #################################################################################################
 
 CC       := clang
+FORMAT   := clang-format
 CFLAGS   = -Wall -fsyntax-only -I$(ZUMOLIB) -I$(FREERTOSINC) -I$(FREERTOSARMCM3) -I$(MQTTCLIENTSOURCE) -I$(MQTTFREERTOS) -I$(MQTTPACKETSOURCE) -I$(GENSOURCEPSOC) -D$(DEBUG) -D$(MQTT_T) -D$(MQTT_H)
+FFLAGS   := -i
 SOURCE   = $(wildcard ./upload/*.c) $(wildcard ./upload/*.cpp)
 TARGET   = PSOC
 
 all: $(TARGET)
 
 $(TARGET):
+	$(FORMAT) $(FFLAGS) $(SOURCE)
 	$(CC) $(CFLAGS) $(SOURCE) $(LDFLAGS)
+
